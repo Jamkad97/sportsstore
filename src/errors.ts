@@ -11,7 +11,6 @@ export const createErrorHandlers = (app: Express) => {
         resp.statusCode = 404;
         resp.render(template400);
     });
-
     const handler: ErrorRequestHandler = (error, req, resp, next) => {
         console.log(error);
         if (resp.headersSent) {
