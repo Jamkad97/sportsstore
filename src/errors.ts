@@ -1,6 +1,5 @@
 import { Express, ErrorRequestHandler } from "express";
 import { getConfig } from "./config";
-import "express-async-errors";
 
 const template400 = getConfig("errors:400");
 const template500 = getConfig("errors:500");
