@@ -1,19 +1,49 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pageSizeOptions = void 0;
+exports.categoryButtons = exports.pageSizeOptions = exports.pageButtons = exports.escapeUrl = exports.navigationUrl = void 0;
+const querystring_1 = require("querystring");
+const querystring_2 = require("querystring");
 const getData = (options) => {
     return { ...options.data.root, ...options.hash };
 };
-// ...other helpers omitted for brevity...
+const navigationUrl = (options) => {
+    const { page, pageSize, category, searchTerm } = getData(options);
+    return "/?" + (0, querystring_1.stringify)({ page, pageSize, category, searchTerm });
+};
+exports.navigationUrl = navigationUrl;
+const escapeUrl = (url) => (0, querystring_2.escape)(url);
+exports.escapeUrl = escapeUrl;
+const pageButtons = (options) => {
+    const { page, pageCount } = getData(options);
+    let output = "";
+    for (let i = 1; i <= pageCount; i++) {
+        output += options.fn({
+            page, pageCount, index: i, selected: i === page
+        });
+    }
+    return output;
+};
+exports.pageButtons = pageButtons;
 const pageSizeOptions = (options) => {
     const { pageSize } = getData(options);
     let output = "";
     [3, 6, 9].forEach(size => {
-        output += options.fn({
-            size,
-            selected: pageSize === size ? "selected" : ""
-        });
+        output += options.fn({ size,
+            selected: pageSize === size ? "selected" : "" });
     });
     return output;
 };
 exports.pageSizeOptions = pageSizeOptions;
+const categoryButtons = (options) => {
+    const { category, categories } = getData(options);
+    let output = "";
+    for (let i = 0; i < categories.length; i++) {
+        output += options.fn({
+            id: categories[i].id,
+            name: categories[i].name,
+            selected: category === categories[i].id
+        });
+    }
+    return output;
+};
+exports.categoryButtons = categoryButtons;
