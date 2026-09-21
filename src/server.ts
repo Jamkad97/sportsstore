@@ -7,13 +7,14 @@ import { createTemplates } from "./helpers";
 import { createErrorHandlers } from "./errors";
 import { createSessions } from "./sessions";
 
-const port = getConfig("http:port", 5000);
+const port = getConfig("http:port", 5500);
 
 const expressApp: Express = express();
 
 expressApp.use(helmet());
 expressApp.use(express.json());
 expressApp.use(express.urlencoded({extended: true}))
+expressApp.use(express.static("node_modules/bootstrap-icons"));
 
 expressApp.use(express.static("node_modules/bootstrap/dist"));
 createTemplates(expressApp);

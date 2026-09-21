@@ -39,6 +39,11 @@ function AddQueries(Base) {
         getSuppliers() {
             return models_1.SupplierModel.findAll({ raw: true, nest: true });
         }
+        getProductDetails(ids) {
+            return models_1.ProductModel.findAll({
+                where: { id: { [sequelize_1.Op.in]: ids } }, raw: true, nest: true,
+            });
+        }
     };
 }
 exports.AddQueries = AddQueries;

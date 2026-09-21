@@ -13,7 +13,7 @@
     "errors": {
         "400": "not_found",
         "500": "error"
-    }, 
+    },
     "catalog": {
         "orm_repo": {
             "settings": {
@@ -22,9 +22,10 @@
             },
             "logging": true,
             "reset_db": true,
-            "seed_file": "products.json"            
-        },
-        "sessions": {
+            "seed_file": "products.json"
+        }
+    },
+    "sessions": {
         "maxAgeHrs": 2,
         "reset_db": true,
         "orm": {
@@ -34,6 +35,5 @@
             },
             "logging": true
         }
-    }
     }
 }
