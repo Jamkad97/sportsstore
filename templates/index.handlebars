@@ -5,10 +5,15 @@
         </div>
         <div class="col">
             {{> search_controls }}   
-            {{#unless products}}<h4>No products</h4>{{/unless}}
+            {{#unless products}}
+                <h4>No products</h4>
+            {{/unless}}
+
+            <div class="d-flex justify-content-between flex-wrap">
             {{#each products }}
                 {{> product this }}
             {{/each}}
+            </div>
             {{> page_controls }}
         </div>
     </div>
