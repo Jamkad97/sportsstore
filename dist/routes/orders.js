@@ -5,8 +5,12 @@ const validation_1 = require("../data/validation");
 const order_helpers_1 = require("./order_helpers");
 const createOrderRoutes = (app) => {
     app.get("/checkout", (req, resp) => {
+        req.session.pageSize =
+            req.session.pageSize ?? req.query.pageSize?.toString() ?? "3";
         resp.render("order_details", {
             order: req.session.orderData,
+            page: 1,
+            pageSize: req.session.pageSize
         });
     });
     app.post("/checkout", async (req, resp) => {
@@ -27,7 +31,8 @@ const createOrderRoutes = (app) => {
         }
     });
     app.get("/checkout/:id", (req, resp) => {
-        resp.render("order_complete", { id: req.params.id });
+        resp.render("order_complete", { id: req.params.id,
+            pageSize: req.session.pageSize ?? 3 });
     });
 };
 exports.createOrderRoutes = createOrderRoutes;
