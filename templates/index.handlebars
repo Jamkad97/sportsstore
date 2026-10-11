@@ -5,7 +5,7 @@
         </div>
         <div class="col">
             {{> search_controls }}
-            {{> page_controls }}
+            {{> page_controls controlsId="top" }}
 <!--            <table class="table table-sm table-striped">-->
 <!--                <thead>-->
 <!--                <tr>-->
@@ -23,7 +23,7 @@
 <!--                {{/each}}-->
 <!--                </tbody>-->
 <!--            </table>-->
-            <div class="d-flex justify-content-between flex-fill">
+            <div class="d-flex justify-content-between flex-wrap flex-fill">
                 {{#unless products}}<h4>No products</h4>{{/unless}}
                 {{#each products }}
                     {{> product this }}
