@@ -6,8 +6,8 @@ import sessionStore from "connect-session-sequelize";
 const config = getConfig("sessions");
 const secret = getSecret("COOKIE_SECRET");
 const logging = config.orm.logging
-        ? { logging: console.log, logQueryParameters: true}
-        : { logging: false };
+    ? { logging: console.log, logQueryParameters: true}
+    : { logging: false };
 export const createSessions = (app: Express) => {
     const sequelize = new Sequelize({
         ...config.orm.settings, ...logging

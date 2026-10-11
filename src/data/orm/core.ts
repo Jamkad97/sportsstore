@@ -1,17 +1,15 @@
 import { Sequelize } from "sequelize";
 import { getConfig } from "../../config";
-import { initializeModels, CategoryModel, ProductModel, SupplierModel } 
+import { initializeModels, CategoryModel, ProductModel, SupplierModel }
     from "./models";
 import { readFileSync } from "fs";
-
 const config = getConfig("catalog:orm_repo");
-const logging = config.logging 
-        ? { logging: console.log, logQueryParameters: true}
-        : { logging: false };
-
+const logging = config.logging
+    ? { logging: console.log, logQueryParameters: true}
+    : { logging: false };
 export class BaseRepo {
-    sequelize: Sequelize; 
-    
+    sequelize: Sequelize;
+
     constructor() {
         this.sequelize = new Sequelize({ ...config.settings, ...logging })
         this.initModelsAndDatabase();
@@ -23,10 +21,9 @@ export class BaseRepo {
             await this.sequelize.sync();
             await this.addSeedData();
         } else {
-            await this.sequelize.sync();            
+            await this.sequelize.sync();
         }
-    }    
-
+    }
     async addSeedData() {
         const data = JSON.parse(readFileSync(config.seed_file).toString());
         await this.sequelize.transaction(async (transaction) => {
@@ -34,7 +31,6 @@ export class BaseRepo {
             await CategoryModel.bulkCreate(data.categories, { transaction });
             await ProductModel.bulkCreate(data.products, { transaction });
         });
-    }    
+    }
 }
-
 export type Constructor<T = {}> = new (...args: any[]) => T;

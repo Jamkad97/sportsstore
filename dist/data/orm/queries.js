@@ -34,14 +34,18 @@ function AddQueries(Base) {
             return { products: result.rows, totalCount: result.count, categories };
         }
         getCategories() {
-            return models_1.CategoryModel.findAll({ raw: true, nest: true });
+            return models_1.CategoryModel.findAll({
+                raw: true, nest: true
+            });
         }
         getSuppliers() {
-            return models_1.SupplierModel.findAll({ raw: true, nest: true });
+            return models_1.SupplierModel.findAll({
+                raw: true, nest: true
+            });
         }
         getProductDetails(ids) {
             return models_1.ProductModel.findAll({
-                where: { id: { [sequelize_1.Op.in]: ids } }, raw: true, nest: true,
+                where: { id: { [sequelize_1.Op.in]: ids } }, raw: true, nest: true
             });
         }
     };

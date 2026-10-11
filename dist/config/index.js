@@ -30,7 +30,7 @@ exports.getConfig = getConfig;
 const getSecret = (name) => {
     const secret = process.env[name];
     if (secret === undefined) {
-        throw new Error(`Undefined secret: ${name}`);
+        throw new Error(`Missing environment variable: ${name}`);
     }
     return secret;
 };

@@ -4,7 +4,7 @@ import { Cart, addLine, createCart, removeLine } from "../data/cart_models";
 import * as cart_helpers from "../data/cart_helpers";
 declare module "express-session" {
     interface SessionData {
-       cart?: Cart;
+        cart?: Cart;
     }
 }
 export const createCartMiddleware = (app: Express) => {
@@ -14,7 +14,7 @@ export const createCartMiddleware = (app: Express) => {
     })
 }
 export const createCartRoutes = (app: Express) => {
-   
+
     app.post("/cart", (req, resp) => {
         const productId = Number.parseInt(req.body.productId);
         if (isNaN(productId)) {

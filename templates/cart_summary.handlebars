@@ -1,9 +1,8 @@
 {{#if cart.lines}}
-    <small class="navbar-text">{{ countCartItems cart }} item(s)</small>
+    <small class="navbar-text">{{ countCartItems cart }} items</small>
 {{else}}
     <small class="navbar-text">(Empty)</small>
 {{/if}}
-<a class="btn btn-sm btn-secondary navbar-btn" 
-    href="/cart?returnUrl={{ escapeUrl ( navigationUrl ) }}">
+<a href="/cart?returnUrl={{ escapeUrl (navigationUrl) }}" class="btn btn-sm btn-secondary navbar-btn">
     <i class="bi-cart"></i>
 </a>

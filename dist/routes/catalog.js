@@ -8,12 +8,14 @@ const createCatalogRoutes = (app) => {
         const pageSize = Number.parseInt(req.query.pageSize?.toString() ?? "3");
         const searchTerm = req.query.searchTerm?.toString();
         const category = Number.parseInt(req.query.category?.toString() ?? "");
-        const res = await data_1.catalog_repository.getProducts({ page, pageSize,
-            searchTerm, category });
-        resp.render("index", { ...res, page, pageSize,
-            pageCount: Math.ceil(res.totalCount / (pageSize ?? 1)),
-            searchTerm, category, show_cart: true
-        });
+        const res = await data_1.catalog_repository.getProducts({ page, pageSize, searchTerm, category });
+        resp.render("index", { ...res, page, pageSize, pageCount: Math.ceil(res.totalCount / (pageSize ?? 1)), searchTerm, category, show_cart: true });
+    });
+    app.get("/err", (req, resp) => {
+        throw new Error("Something bad happened");
+    });
+    app.get("/asyncerr", async (req, resp) => {
+        throw new Error("Something bad happened asynchronously");
     });
 };
 exports.createCatalogRoutes = createCatalogRoutes;

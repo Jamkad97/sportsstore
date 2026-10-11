@@ -34,8 +34,7 @@ const config = (0, config_1.getConfig)("templates:config");
 const createTemplates = (app) => {
     app.set("views", location);
     app.engine("handlebars", (0, express_handlebars_1.engine)({
-        ...config,
-        helpers: { ...env_helpers, ...catalog_helpers, ...cart_helpers }
+        ...config, helpers: { ...env_helpers, ...catalog_helpers, ...cart_helpers }
     }));
     app.set("view engine", "handlebars");
 };
