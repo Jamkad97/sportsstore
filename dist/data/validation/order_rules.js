@@ -5,7 +5,8 @@ const validator_1 = require("./validator");
 const basic_rules_1 = require("./basic_rules");
 exports.CustomerValidator = new validator_1.Validator({
     name: [basic_rules_1.required, (0, basic_rules_1.minLength)(2)],
-    email: basic_rules_1.email
+    email: basic_rules_1.email,
+    federatedId: basic_rules_1.no_op
 });
 exports.AddressValidator = new validator_1.Validator({
     street: basic_rules_1.required,

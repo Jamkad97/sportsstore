@@ -4,7 +4,8 @@ import { Address } from "../order_models";
 import { Customer } from "../customer_models";
 export const CustomerValidator = new Validator<Customer>({
     name: [required, minLength(2)],
-    email: email
+    email: email,
+    federatedId: no_op
 });
 export const AddressValidator = new Validator<Address>({
     street: required,
