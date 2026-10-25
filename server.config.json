@@ -35,5 +35,10 @@
             },
             "logging": true
         }
+    },
+    "auth": {
+        "openauth": {
+            "redirectionUrl": "http://localhost:5500/signin-google"
+        }
     }
 }
