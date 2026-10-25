@@ -27,4 +27,5 @@ export const initializeOrderModels = (sequelize: Sequelize) => {
         { through: "OrderProductJunction",
             foreignKey: "orderId", as: "selections" });
     ProductSelectionModel.belongsTo(ProductModel, { as: "product"});
+    AddressModel.hasMany(OrderModel, { foreignKey: "addressId"});
 }

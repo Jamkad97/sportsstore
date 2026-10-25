@@ -26,5 +26,6 @@ const initializeOrderModels = (sequelize) => {
     order_models_1.OrderModel.belongsToMany(order_models_1.ProductSelectionModel, { through: "OrderProductJunction",
         foreignKey: "orderId", as: "selections" });
     order_models_1.ProductSelectionModel.belongsTo(_1.ProductModel, { as: "product" });
+    order_models_1.AddressModel.hasMany(order_models_1.OrderModel, { foreignKey: "addressId" });
 };
 exports.initializeOrderModels = initializeOrderModels;

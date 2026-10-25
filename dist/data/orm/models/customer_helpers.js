@@ -7,7 +7,8 @@ const initializeCustomerModels = (sequelize) => {
     customer_models_1.CustomerModel.init({
         id: { type: sequelize_1.DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
         name: { type: sequelize_1.DataTypes.STRING },
-        email: { type: sequelize_1.DataTypes.STRING }
+        email: { type: sequelize_1.DataTypes.STRING },
+        federatedId: { type: sequelize_1.DataTypes.STRING }
     }, { sequelize });
 };
 exports.initializeCustomerModels = initializeCustomerModels;
