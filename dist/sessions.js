@@ -28,9 +28,9 @@ const createSessions = (app) => {
     }
     app.use((0, express_session_1.default)({
         secret, store,
-        resave: true, saveUninitialized: false,
+        resave: false, saveUninitialized: true,
         cookie: { maxAge: config.maxAgeHrs * 60 * 60 * 1000,
-            sameSite: "strict" }
+            sameSite: false, httpOnly: false, secure: false }
     }));
 };
 exports.createSessions = createSessions;
