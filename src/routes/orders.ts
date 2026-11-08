@@ -36,5 +36,25 @@ export const createOrderRoutes = (app: Express) => {
             pageSize: req.session.pageSize
         });
     });
-    // ...other routes omitted for brevity...
-}
+    app.post("/checkout", async (req, resp) => {
+        const { customer, address } = req.body;
+        const data = req.session.orderData = {
+            customer: await CustomerValidator.validate(customer),
+            address: await AddressValidator.validate(address)
+        };
+        if (isValid(data.customer) && isValid(data.address)
+                && req.session.cart) {
+            const order = await createAndStoreOrder(
+                getData(data.customer), getData(data.address), req.session.cart
+            )
+            resp.redirect(`/checkout/${order.id}`);
+            req.session.cart = undefined;
+            req.session.orderData = undefined;
+        } else {
+            resp.redirect("/checkout");
+        }
+    });
+    app.get("/checkout/:id", (req, resp) => {
+        resp.render("order_complete", {id: req.params.id, 
+            pageSize: req.session.pageSize ?? 3});
+    })}
