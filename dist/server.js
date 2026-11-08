@@ -20,6 +20,7 @@ expressApp.use(express_1.default.json());
 expressApp.use(express_1.default.urlencoded({ extended: true }));
 expressApp.use(express_1.default.static("node_modules/bootstrap/dist"));
 expressApp.use(express_1.default.static("node_modules/bootstrap-icons"));
+expressApp.use(express_1.default.static("node_modules/htmk.org/dist"));
 (0, helpers_1.createTemplates)(expressApp);
 (0, sessions_1.createSessions)(expressApp);
 (0, authentication_1.createAuthentication)(expressApp);

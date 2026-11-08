@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createAdminRoutes = void 0;
 const express_1 = require("express");
 const admin_catalog_routes_1 = require("./admin_catalog_routes");
+const admin_order_routes_1 = require("./admin_order_routes");
 const createAdminRoutes = (app) => {
     app.use((req, resp, next) => {
         resp.locals.layout = false;
@@ -11,6 +12,9 @@ const createAdminRoutes = (app) => {
     const cat_router = (0, express_1.Router)();
     (0, admin_catalog_routes_1.createAdminCatalogRoutes)(cat_router);
     app.use("/api/products", cat_router);
+    const order_router = (0, express_1.Router)();
+    (0, admin_order_routes_1.createAdminOrderRoutes)(order_router);
+    app.use("/api/orders", order_router);
     app.get("/admin", (req, resp) => resp.render("admin/admin_layout"));
 };
 exports.createAdminRoutes = createAdminRoutes;
