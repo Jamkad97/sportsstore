@@ -24,7 +24,7 @@ expressApp.use(express_1.default.static("node_modules/htmk.org/dist"));
 (0, helpers_1.createTemplates)(expressApp);
 (0, sessions_1.createSessions)(expressApp);
 (0, authentication_1.createAuthentication)(expressApp);
-(0, routes_1.createRoutes)(expressApp);
+(0, routes_1.createAdminRoutes)(expressApp);
 const server = (0, http_1.createServer)(expressApp);
 if ((0, config_1.getEnvironment)() === config_1.Env.Development) {
     const proxy = http_proxy_1.default.createProxyServer({

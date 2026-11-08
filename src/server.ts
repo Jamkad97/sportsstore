@@ -2,7 +2,7 @@ import { createServer } from "http";
 import express, { Express } from "express";
 import helmet from "helmet";
 import { Env, getConfig, getEnvironment } from "./config";
-import { createRoutes } from "./routes";
+import { createAdminRoutes } from "./routes";
 import { createTemplates } from "./helpers";
 import { createErrorHandlers } from "./errors";
 import { createSessions } from "./sessions";
@@ -20,7 +20,7 @@ expressApp.use(express.static("node_modules/htmk.org/dist"));
 createTemplates(expressApp);
 createSessions(expressApp);
 createAuthentication(expressApp);
-createRoutes(expressApp);
+createAdminRoutes(expressApp);
 
 const server = createServer(expressApp);
 if (getEnvironment() === Env.Development) {
