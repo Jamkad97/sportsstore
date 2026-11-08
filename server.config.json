@@ -1,6 +1,13 @@
 {
     "http": {
-        "port": 5500
+        "port": 5500,
+        "content_security": {
+            "contentSecurityPolicy": {
+                "directives": {
+                    "upgradeInsecureRequests": null
+                }
+            }
+        }
     },
     "templates": {
         "location": "templates",

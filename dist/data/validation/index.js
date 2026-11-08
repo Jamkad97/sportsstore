@@ -18,3 +18,4 @@ __exportStar(require("./validation_types"), exports);
 __exportStar(require("./validator"), exports);
 __exportStar(require("./basic_rules"), exports);
 __exportStar(require("./order_rules"), exports);
+__exportStar(require("./product_dto_rules"), exports);

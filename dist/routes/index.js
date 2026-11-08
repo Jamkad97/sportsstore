@@ -1,15 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createRoutes = void 0;
-const catalog_1 = require("./catalog");
-const cart_1 = require("./cart");
-const orders_1 = require("./orders");
-const admin_1 = require("./admin");
+const express_1 = require("express");
+const admin_catalog_routes_1 = require("./admin/admin_catalog_routes");
 const createRoutes = (app) => {
-    (0, cart_1.createCartMiddleware)(app);
-    (0, catalog_1.createCatalogRoutes)(app);
-    (0, cart_1.createCartRoutes)(app);
-    (0, orders_1.createOrderRoutes)(app);
-    (0, admin_1.createAdminRoutes)(app);
+    app.use((req, resp, next) => {
+        resp.locals.layout = false;
+        next();
+    });
+    const cat_router = (0, express_1.Router)();
+    (0, admin_catalog_routes_1.createAdminCatalogRoutes)(cat_router);
+    app.use("/api/products", cat_router);
+    app.get("/admin", (req, resp) => resp.render("admin/admin_layout"));
 };
 exports.createRoutes = createRoutes;
